@@ -1,18 +1,21 @@
 package los.hermanos.banking.system;
 
+import los.hermanos.banking.system.RandomCreditCardNumberGenerator.*;
+
 /**
  *
  * @author GHAMRY and HAZEM
  */
 public class Account {
     String name, accountType;
-    int accountNumber, accountBalance;
+    String accountNumber;
+    int accountBalance;
     
-    public Account(String name, String accountType, int accountNumber, int accountBalance) {
+    public Account(String name, String accountType) {
         this.name = name;
         this.accountType = accountType;
-        this.accountNumber = accountNumber;
-        this.accountBalance = accountBalance = 0;
+        this.accountNumber = RandomCreditCardNumberGenerator.generateMasterCardNumber();
+        this.accountBalance = 0;
     }
     
     public void showDetails() {
