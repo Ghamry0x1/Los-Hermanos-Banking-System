@@ -35,6 +35,45 @@ public class AccountTest {
     public void tearDown() {
     }
 
+    @Test
+    public void testMain() {
+        System.out.println("deposit");
+        Account receiverAccount = new Account("recAccTest", "Titanium");
+        int amount = -5;
+        instance.deposit(amount);
+        try {
+            assertEquals(0, instance.accountBalance);
+        } catch(Exception e) {
+            fail("The testMain case has failed.");
+        }
+        instance.deposit(100);
+        assertEquals(100, instance.accountBalance);
+        
+        amount = 1000;
+        try {
+            instance.withdraw(amount);
+            assertEquals(100, instance.accountBalance);
+        } catch(Exception e) {
+            fail("The testMain case has failed.");
+        }
+        amount = -1000;
+        try {
+            instance.withdraw(amount);
+            assertEquals(100, instance.accountBalance);
+        } catch(Exception e) {
+            fail("The testMain case has failed.");
+        }
+        instance.withdraw(100);
+        assertEquals(0, instance.accountBalance);
+        
+        amount = 50;
+        try {
+            assertFalse("This transfer didn't go correctly", instance.transfer(receiverAccount, amount));
+        } catch(Exception e) {
+            fail("The testMain case has failed.");
+        }
+    }
+    
     /**
      * Test of deposit method, of class Account.
      */
